@@ -1,0 +1,87 @@
+<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            {{ range .Site.Menus.sidebar_dropdown }}
+                <li>
+                    <a href="{{ .URL }}" target="_blank" title="{{ .Name }}">
+                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">{{ .Pre }}</i>
+                        {{ .Name }}
+                    </a>
+                </li>
+            {{ end }}
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="{{ .Site.BaseURL }}" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+            {{ i18n "homepage"}}
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+    <!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             <%= __("sidebar.imlucky") %>
+        </a>
+    </li>
+    -->
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             {{ i18n "archive"}}
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    {{ if .Site.Params.sidebar_categories }}
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                {{ i18n "category" }}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+                <li>
+                    <a class="sidebar_archives-link" href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">{{ $name }}<span class="sidebar_archives-count">{{ $taxonomy.Count }}</span></a>
+                </li>
+              {{ end }}
+            </ul>
+        </li>
+    {{ end }}
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+  	{{ range .Site.Menus.pages }}
+        <li>
+            <a href="{{ .URL }}" title="{{ .Name }}">
+                {{ if .Pre }}
+                    <i class="material-icons sidebar-material-icons">{{ .Pre }}</i>
+                {{ end }}
+                {{ .Name }}
+            </a>
+        </li>
+  	{{ end }}
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+            {{ i18n "article_num" }}
+            <span class="sidebar-badge">0000</span>
+        </a>
+    </li>
+</ul>

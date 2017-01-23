@@ -1,0 +1,48 @@
+{{ if eq .Site.Params.scheme "Paradox" }}
+    <!-- Paradox Post Header -->
+    {{ if not (isset .Params "thumbnail") }}
+        {{ if not (isset .Site.Params "thumbnail_purecolor") }}
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            {{ partial "Paradox-post-thumbnail.html" . }}
+        {{ else }}
+            <!-- Pure Thumbnail -->
+            <div class="post_thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:{{ .Site.Params.thumbnail_purecolor }} !important">
+        {{ end }}
+    {{ else }}
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url({{ .Params.thumbnail }})">
+    {{ end }}
+            <p class="article-headline-p">
+                {{ .Title }}
+            </p>
+        </div>
+{{ end }}
+
+{{ if eq .Site.Params.scheme "Isolation" }}
+    <!-- Isolation Post Header -->
+    <!-- Post thumbnail -->
+    {{ if not (isset .Params "thumbnail") }}
+        <!-- Post Header Info -->
+        <div class="post-header_info without-thumbnail">
+            <!-- Author Avatar & Name -->
+            <img src="{{ .Site.Params.img_avatar | relURL }}" class="avatar-img" width="44px" height="44px" alt="{{ .Site.Author.name }}'s avatar">
+            <span class="name-span">{{ .Site.Author.name }}</span>
+        </div>
+
+        <!-- Null Thumbnail -->
+        <div class="post_thumbnail-null">
+    {{ else }}
+        <!-- Post Header Info -->
+        <div class="post-header_info with-thumbnail">
+            <!-- Author Avatar & Name -->
+            <img src="{{ .Site.Params.img_avatar | relURL }}" class="avatar-img" width="44px" height="44px" alt="{{ .Site.Author.name }}'s avatar">
+            <span class="name-span">{{ .Site.Author.name }}</span>
+        </div>
+
+        <!-- Custom thumbnail -->
+        <div class="post_thumbnail-custom">
+            <img src="{{ .Params.thumbnail | relURL }}">
+    {{ end }}
+        </div>
+{{ end }}

@@ -1,0 +1,22 @@
+<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        {{ partial "sidebar-header.html" . }}
+
+        <!-- Sidebar Navigation  -->
+        {{ partial "sidebar-navigation.html" . }}
+
+        <!-- Sidebar Divider -->
+        <div class="sidebar-divider"></div>
+
+        <!-- Sidebar Footer -->
+        {{ partial "sidebar-footer.html" . }}
+    </div>
+
+    <!-- Sidebar Sponsor -->
+    {{ partial "sidebar-sponsor.html" . }}
+</aside>

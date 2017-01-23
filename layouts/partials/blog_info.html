@@ -1,0 +1,119 @@
+<!-- Blog info -->
+<div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop index-top-block">
+
+    <!-- Search -->
+    {{ partial "Paradox-search.html" . }}
+
+    <!-- LOGO -->
+    <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
+        <a href="{{ default "#" .Site.Params.url_logo }}">
+            <img src="{{ .Site.Params.img_logo }}" alt="logo" />
+        </a>
+    </div>
+
+    <!-- Infomation -->
+    <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+        <!-- Blog Title -->
+        <div>
+            <strong>{{ .Title }}</strong>
+        </div>
+        <div class="section-spacer"></div>
+
+        <!-- Pages -->
+        <button id="show-pages-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">view_carousel</i>
+            <span class="visuallyhidden">Pages</span>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
+            {{ range .Site.Menus.main }}
+                <a class="index_share-link" href="{{ default "#" .URL }}" title="{{ .Name }}">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        {{ .Name }}
+                    </li>
+                </a>
+            {{ end }}
+        </ul>
+
+        <!-- Menu -->
+        <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">more_vert</i>
+            <span class="visuallyhidden">show menu</span>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
+            {{ if .Site.Params.busuanzi_all_site_uv }}
+                <!-- All Site UV -->
+                <a class="index_share-link" href="#">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        <span id="busuanzi_container_site_uv">
+                            <span id="busuanzi_value_site_uv"></span>&nbsp;{{ i18n "views" }}
+                        </span>
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.url_rss }}
+                <a class="index_share-link" href="{{ default "#" .Site.Params.url_rss }}">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        {{ i18n "article_rss" }}
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.sns_share_weibo }}
+                <a class="index_share-link" href="http://service.weibo.com/share/share.php?appkey=&title={{ .Title }}&url={{ .URL }}&pic=&searchPic=false&style=simple" target="_blank">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        {{ i18n "toWeibo"}}
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.sns_share_twitter }}
+                <a class="index_share-link" href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .URL }}&via={{ .Site.Author.name }}" target="_blank">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        {{ i18n "toTwitter"}}
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.sns_share_facebook }}
+                <a class="index_share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ .URL }}" target="_blank">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        {{ i18n "toFacebook"}}
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.sns_share_googleplus }}
+                <a class="index_share-link" href="https://plus.google.com/share?url={{ .URL }}" target="_blank">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        {{ i18n "toGplus"}}
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.sns_share_linkedin }}
+                <a class="index_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url={{ .URL }}&title={{ .Title }}" target="_blank">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        {{ i18n "toLinkedIn"}}
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.sns_share_qq }}
+                <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site={{ .Title }}&title={{ .Title }}&summary={{ .Description }}&pics={{ .Site.Params.head_favicon | absURL }}&url={{ .URL }}" target="_blank">
+                    <li class="mdl-menu__item">
+                        {{ i18n "toQQ"}}
+                    </li>
+                </a>
+            {{ end }}
+
+            {{ if .Site.Params.sns_share_telegram }}
+                <a class="post_share-link" href="https://telegram.me/share/url?url={{ .URL }}&text={{ .Title }}" target="_blank">
+                    <li class="mdl-menu__item">
+                        {{ i18n "toTelegram"}}
+                    </li>
+                </a>
+            {{ end }}
+        </ul>
+    </div>
+</div>

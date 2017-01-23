@@ -1,0 +1,46 @@
+- id: homepage
+  translation: "主页"
+- id: archive
+  translation: "归档"
+- id: article_num
+  translation: "文章总数"
+- id: visitor
+  translation: "访客"
+- id: views
+  translation: "浏览量"
+- id: continue
+  translation: "继续阅读"
+- id: older
+  translation: "旧篇"
+- id: newer
+  translation: "新篇"
+- id: private
+  translation: "私有文章，暂不公开"
+- id: qrcode
+  translation: "在其它设备中阅读本文章"
+- id: article_rss
+  translation: "文章 RSS"
+- id: comment_rss
+  translation: "评论 RSS"
+- id: toTwitter
+  translation: "分享到 Twitter"
+- id: toFacebook
+  translation: "分享到 Facebook"
+- id: toLinkedIn
+  translation: "分享到 LinkedIn"
+- id: toTelegram
+  translation: "分享到 Telegram"
+- id: toGplus
+  translation: "分享到 Google+"
+- id: toWeibo
+  translation: "分享到微博"
+- id: toQQ
+  translation: "分享到 QQ"
+- id: category
+  translation: "分类"
+- id: tag
+  translation: "标签"
+- id: home
+  translation: "主页"
+- id: theme
+  translation: "主题"

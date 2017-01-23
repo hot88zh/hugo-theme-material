@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<p style="color: red">
+{{ printf "%#v" .TableOfContents }}
+</p>
+    {{ partial "header.html" . }}
+
+        <body id="scheme-{{ .Site.Params.scheme }}">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                {{ if eq .Site.Params.scheme "Isolation" }}
+                    <!-- Isolation Header -->
+                    {{ partial "isolate_info.html" . }}
+                {{ end }}
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+{{ if eq .Site.Params.scheme "Paradox" }}
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    {{ end }}
+
+                    <!-- Post TOC -->
+{{  if .Params.toc }}
+    {{ partial "toc_button.html" . }}
+{{ end }}
+
+<!-- Layouts -->
+{{ if eq .Type "tags" }}
+    <!-- Tags Cloud -->
+    {{ partial "_widget/page-tagcloud.html" . }}
+
+{{ else if eq .Type "links" }}
+    <!-- Single Links Page -->
+    {{ partial "_widget/page-links.html" . }}
+
+{{ else if eq .Type "private" }}
+    <!-- Hidden Page -->
+    <div class="material-post_container">
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                <!-- Post Header(Thumbnail & Title) -->
+                {{ partial "post-header.html" . }}
+
+                {{ if eq .Site.Params.scheme "Paradox" }}
+                  <!-- Paradox Post Info -->
+                  {{ partial "Paradox-post-info.html" . }}
+                {{ end }}
+
+                <!-- Post Hidden -->
+                <div id="post-content">
+                    <p>{{ i18n "private" }}</p>
+                </div>
+
+                {{ if eq .Site.Params.scheme "Isolation" }}
+                    <!-- Paradox Post Info -->
+                    {{ partial "Isolation-post-info.html" . }}
+                {{ end }}
+
+                <!-- Post Comments -->
+                {{ partial "comment.html" . }}
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            {{ partial "post-nav.html" . }}
+        </div>
+    </div>
+
+{{ else }}
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                {{ partial "post-header.html" . }}
+
+                {{ if eq .Site.Params.scheme "Paradox" }}
+                  <!-- Paradox Post Info -->
+                  {{ partial "Paradox-post-info.html" . }}
+                {{ end }}
+
+                <!-- Post Content -->
+                {{ partial "post-content.html" . }}
+
+                {{ if eq .Site.Params.scheme "Isolation" }}
+                    <!-- Paradox Post Info -->
+                    {{ partial "Isolation-post-info.html" . }}
+                {{ end }}
+
+                <!-- Post Comments -->
+                {{ if .Params.comment }}
+                    {{ partial "comment.html" . }}
+                {{ end }}
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            {{ partial "post-nav.html" . }}
+        </div>
+    </div>
+{{ end }}
+
+
+                    {{ if eq .Site.Params.scheme "Paradox" }}
+                        {{ partial "sidebar.html" . }}
+                        {{ partial "footer_top.html" . }}
+                    {{ end }}
+
+                    {{ partial "footer.html" . }}
+
+                    {{ partial "import_js.html" . }}
+                </main>
+            </div>
+        </body>
+</html>

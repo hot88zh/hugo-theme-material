@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<p style="color: red">
+{{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+{{ printf "%#v" $name }}
+{{ printf "%#v" $taxonomy.Count }}
+{{ end }}
+{{ printf "%#v" .Paginator.PageSize }}
+{{ printf "%#v" .TableOfContents }}
+</p>
+    {{ partial "header.html" . }}
+
+        <body id="scheme-{{ .Site.Params.scheme }}">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                {{ if eq .Site.Params.scheme "Isolation" }}
+                    <!-- Isolation Header -->
+                    {{ partial "isolate_info.html" . }}
+                {{ end }}
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+{{ if eq .Site.Params.scheme "Paradox" }}
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    {{ end }}
+
+                    <!-- Index Module -->
+<div class="material-index mdl-grid">
+{{ if and (and (eq .Site.Params.scheme "Paradox") (eq .Paginator.PageNumber 1)) .IsHome }}
+        <!-- Paradox Header -->
+        {{ partial "daily_pic.html" . }}
+        {{ partial "blog_info.html" . }}
+    {{ end }}
+    <div class="locate-thumbnail-symbol"></div>
+
+    {{ range .Paginator.Pages }}
+        {{ if eq .Site.Params.scheme "Paradox" }}
+            <!-- Paradox Thumbnail -->
+            {{ partial "Paradox-post_entry.html" . }}
+        {{ end }}
+        {{ if eq .Site.Params.scheme "Isolation" }}
+            <!-- Isolation Thumbnail -->
+            {{ partial "Isolation-post_entry.html" . }}
+        {{ end }}
+    {{ end }}
+
+    <!-- Index nav -->
+    <nav class="material-nav mdl-cell mdl-cell--12-col">
+    {{ if .Paginator.HasPrev }}
+            <a class="extend prev" rel="prev" href="{{ .Paginator.Prev.RelPermalink }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a>
+            {{ end }}
+            <span class="page-number current">{{ .Paginator.PageNumber }}</span>
+            {{ if .Paginator.HasNext }}
+            <a class="extend next" rel="next" href="{{ .Paginator.Next.RelPermalink }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
+            {{ end }}
+    </nav>
+
+    {{ if eq .Site.Params.scheme "Paradox" }}
+        {{ partial "Paradox-post_entry-thumbnail.html" . }}
+    {{ end }}
+</div>
+
+
+                    {{ if eq .Site.Params.scheme "Paradox" }}
+                        {{ partial "sidebar.html" . }}
+                        {{ partial "footer_top.html" . }}
+                    {{ end }}
+
+                    {{ partial "footer.html" . }}
+
+                    {{ partial "import_js.html" . }}
+                </main>
+            </div>
+        </body>
+</html>

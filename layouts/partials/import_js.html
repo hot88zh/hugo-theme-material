@@ -1,0 +1,47 @@
+<!-- Import File -->
+<script type="text/javascript" src="{{ "/js/highlight.min.js" | relURL }}"></script>
+<script type="text/javascript" src="{{ "/js/js.min.js" | relURL }}"></script>
+{{ partial "nprogress.html" . }}
+
+{{ if .Site.Params.js_effect.smoothscroll }}
+    <script type="text/javascript" src="{{ "/js/smoothscroll.js" | relURL }}"></script>
+{{ end }}
+
+{{ partial "footer-option.html" . }}
+
+<!-- Swiftye -->
+{{ if eq .Site.Params.search_use "swiftype" }}
+    {{ partial "_widget/search-swiftype-js.html" . }}
+{{ end }}
+
+<!-- Local Search-->
+{{ if eq .Site.Params.search_use "local" }}
+    {{ partial "_widget/search-local-js.html" . }}
+
+    <script>
+        var inputArea = document.querySelector('#search');
+        var getSearchFile = function() {
+            var path = '{{ .Site.BaseURL }}';
+            searchFunc(path, 'search', 'local-search-result');
+        }
+
+        if(inputArea) {
+            inputArea.onfocus = function() {
+                getSearchFile();
+            }
+        }
+    </script>
+{{ end }}
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+{{ if .Params.mathjax }}
+    {{ partial "_widget/mathjax.html" . }}
+{{ end }}

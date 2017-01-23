@@ -1,0 +1,125 @@
+<!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+    body, html {
+        font-family: {{ .Site.Params.fonts }};
+    }
+
+    a {
+        color: {{ .Site.Params.uiux_hyperlink_color }};
+    }
+
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: {{ .Site.Params.uiux_theme_color }} !important;
+    }
+
+    /* Sidebar User Drop Down Menu Text Color */
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+        color: {{ .Site.Params.uiux_theme_color }} !important;
+    }
+
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+        color: {{ .Site.Params.uiux_theme_color }} !important;
+    }
+
+    .toTop {
+        background: {{ .Site.Params.uiux_button_color }} !important;
+    }
+
+    .material-layout .material-post>.material-nav,
+    .material-layout .material-index>.material-nav,
+    .material-nav a {
+        color: {{ .Site.Params.uiux_button_color }};
+    }
+
+    #scheme-Paradox .MD-burger-layer {
+        background-color: {{ .Site.Params.uiux_button_color }};
+    }
+
+    #scheme-Paradox #post-toc-trigger-btn {
+        color: {{ .Site.Params.uiux_button_color }};
+    }
+
+    .post-toc a:hover {
+        color: {{ .Site.Params.uiux_hyperlink_color }};
+        text-decoration: underline;
+    }
+</style>
+
+
+<!-- Theme Background Related-->
+{{ if .Site.Params.background_bing_enable }}
+    <style>
+        body {
+            background-color: {{ .Site.Params.background_purecolor }};
+        }
+
+        /* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
+            background-color: #fff;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            setTimeout(function () {
+                document.body.background="https://api.i-meto.com/bing?{{ .Site.Params.background_bing_parameter }}";
+            }, 2000);
+        }
+    </script>
+{{ else if .Site.Params.background_bgimg }}
+    <style>
+        body{
+            background-color: {{ .Site.Params.background_purecolor }};
+        }
+
+        /* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+{{ else }}
+    <style>
+        body{
+            background-image: url({{ .Site.Params.background_bgimg }});
+        }
+    </style>
+{{ end }}
+
+
+
+<!-- Fade Effect -->
+{{ if .Site.Params.js_effect_fade }}
+    <style>
+        .fade {
+            transition: all {{ .Site.Params.uiux_nprogress_buffer }}ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+{{ end }}
